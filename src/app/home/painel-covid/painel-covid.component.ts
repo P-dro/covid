@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CovidState } from './store/covid-state';
+import { CovidState, CovidFeature } from './store/covid-state';
 import { getCovid } from './store/covid-action';
 import { CovidData } from 'src/app/models/covid-data.model';
 import { getCovidState } from './store/covid-reducer';

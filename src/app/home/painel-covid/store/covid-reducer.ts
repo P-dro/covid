@@ -7,7 +7,7 @@ import { getCovid, getCovidSuccess } from './covid-action';
 const _covidReducer = createReducer(initialState,
     on(getCovid, (state): CovidState => Object.assign({}, state, { loading: true })),
     on(getCovidSuccess, (state, action): CovidState => Object.assign({}, state, {
-        covid: action,
+        data: action,
         loading: false
     }))
 );
@@ -20,7 +20,7 @@ export const getCovidFeature = createFeatureSelector<CovidFeature>('covid');
 
 export const getCovidState = createSelector(
     getCovidFeature,
-    (state) => state.covid.covid
+    (state) => state.data
 )
 
 

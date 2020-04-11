@@ -1,15 +1,15 @@
 import { CovidData } from '../../../models/covid-data.model'
 
 export interface CovidState {
-    covid: CovidData[],
+    data: CovidData[],
     loading: boolean
 }
 
 export interface CovidFeature {
-    covid: CovidState
+    data: CovidData[]
 }
 
 export const initialState = {
-    covid: null,
+    data: null,
     loading: false
 }
