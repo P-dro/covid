@@ -2,8 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const CONTEXTO = 'https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com';
+
+const GET_COVID_SERVICE = `${CONTEXTO}/prod/PortalMapa`;
+
 export const environment = {
-  production: false
+  production: false,
+  covidService: GET_COVID_SERVICE
 };
 
 /*
