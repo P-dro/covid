@@ -10,3 +10,9 @@ export interface CovidData {
     letalidade: string,
     qtd_obito: number
 }
+
+
+export interface CovidDataResponse {
+    results: CovidData[]
+}
+
