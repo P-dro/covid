@@ -20,7 +20,7 @@ export const getCovidFeature = createFeatureSelector<CovidFeature>('covid');
 
 export const getCovidState = createSelector(
     getCovidFeature,
-    (state) => state.covid
+    (state) => state.covid.covid
 )
 
 
