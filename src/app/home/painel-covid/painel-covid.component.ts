@@ -8,7 +8,7 @@ import { getCovid } from './store/covid-action';
 import { CovidData } from 'src/app/models/covid-data.model';
 import { getCovidState } from './store/covid-reducer';
 import * as Highcharts from 'highcharts';
-import { map } from 'rxjs/operators';
+import * as Proj4 from 'proj4';
 
 
 @Component({
@@ -39,12 +39,14 @@ export class PainelCovidComponent implements OnInit {
           let objectHighcharts = {
             stateNome: [],
             cases: [],
-            deaths: []
+            deaths: [],
+            lethality: []
           }
 
           let arrayStates = [];
           let cases = [];
           let deaths = [];
+          let lethality = [];
 
           console.log(data)
           for (let index = 0; index < 27; index++) {
@@ -53,10 +55,12 @@ export class PainelCovidComponent implements OnInit {
             arrayStates.push(element.nome)
             cases.push(element.qtd_confirmado)
             deaths.push(element.qtd_obito)
+            lethality.push(parseInt(element.letalidade))
           }
           objectHighcharts.stateNome = arrayStates;
           objectHighcharts.cases = cases;
           objectHighcharts.deaths = deaths;
+          objectHighcharts.lethality = lethality;
 
           Highcharts.chart('container', {
             chart: {
@@ -100,8 +104,55 @@ export class PainelCovidComponent implements OnInit {
               }]
             }
           })
+          this.createLethality(objectHighcharts)
         }
       });
+
+
+  }
+
+  createLethality(lethality) {
+    Highcharts.chart('containerLethality', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Letalidade'
+      },
+      subtitle: {
+        text: 'números em porcentagem'
+      },
+      xAxis: {
+        categories: lethality.stateNome
+      },
+      yAxis: {
+        title: {
+          text: 'Letalidade'
+        }
+      },
+      series: [{
+        name: 'Letalidade',
+        data: lethality.lethality,
+        type: 'bar',
+        tooltip: {
+          pointFormat: 'Taxa de letalidade: <b>{point.y}%</b><br>'
+        }
+      }],
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 800
+          },
+          chartOptions: {
+            legend: {
+              layout: 'horizontal',
+              align: 'center',
+              verticalAlign: 'bottom'
+            }
+          },
+        }]
+      }
+    })
   }
 
 }
