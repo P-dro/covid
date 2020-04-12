@@ -14,12 +14,14 @@ import { covidReducer } from './home/painel-covid/store/covid-reducer';
 import { CovidEffect } from './home/painel-covid/store/covid-effect';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PainelCovidService } from './home/painel-covid.service';
+import { NewsletterComponent } from './home/newsletter/newsletter.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PainelCovidComponent
+    PainelCovidComponent,
+    NewsletterComponent
   ],
   imports: [
     BrowserModule,
