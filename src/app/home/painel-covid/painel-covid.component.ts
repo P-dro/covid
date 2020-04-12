@@ -119,9 +119,6 @@ export class PainelCovidComponent implements OnInit {
       title: {
         text: 'Letalidade'
       },
-      subtitle: {
-        text: 'números em porcentagem'
-      },
       xAxis: {
         categories: lethality.stateNome
       },
