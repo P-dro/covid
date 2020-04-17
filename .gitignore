@@ -46,3 +46,7 @@ testem.log
 Thumbs.db
 package-lock.json
 package-lock.json
+.firebaserc
+firebase.json
+.firebase/hosting.ZGlzdA.cache
+.firebase/hosting.ZGlzdC9jb3ZpZA.cache
