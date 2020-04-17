@@ -70,7 +70,7 @@ export class PainelCovidComponent implements OnInit {
               text: 'Covid 19 - Brasil'
             },
             subtitle: {
-              text: 'Casos de coronavirus no Brasil'
+              text: 'Fonte: Ministério da Saúde - Brasil'
             },
             xAxis: {
               categories: objectHighcharts.stateNome
@@ -79,6 +79,9 @@ export class PainelCovidComponent implements OnInit {
               title: {
                 text: 'Casos / Mortes'
               }
+            },
+            tooltip: {
+              stickOnContact: false
             },
             series: [{
               name: 'Casos',
@@ -92,17 +95,37 @@ export class PainelCovidComponent implements OnInit {
             responsive: {
               rules: [{
                 condition: {
-                  maxWidth: 800
+                  maxWidth: 500
                 },
                 chartOptions: {
+                  chart: {
+                    type: 'bar'
+                  },
                   legend: {
-                    layout: 'horizontal',
                     align: 'center',
-                    verticalAlign: 'bottom'
+                    verticalAlign: 'bottom',
+                    layout: 'horizontal'
+                  },
+                  yAxis: {
+                    labels: {
+                      align: 'left',
+                      x: 5,
+                      y: 0
+                    },
+                    title: {
+                      text: null
+                    }
+                  },
+                  subtitle: {
+                    text: null
+                  },
+                  credits: {
+                    enabled: false
                   }
                 }
               }]
             }
+
           })
           this.createLethality(objectHighcharts)
         }
@@ -114,10 +137,13 @@ export class PainelCovidComponent implements OnInit {
   createLethality(lethality) {
     Highcharts.chart('containerLethality', {
       chart: {
-        type: 'bar'
+        type: 'spline'
       },
       title: {
         text: 'Letalidade'
+      },
+      subtitle: {
+        text: 'Fonte: Ministério da Saúde - Brasil'
       },
       xAxis: {
         categories: lethality.stateNome
@@ -130,7 +156,7 @@ export class PainelCovidComponent implements OnInit {
       series: [{
         name: 'Letalidade',
         data: lethality.lethality,
-        type: 'bar',
+        type: 'spline',
         tooltip: {
           pointFormat: 'Taxa de letalidade: <b>{point.y}%</b><br>'
         }
@@ -138,9 +164,12 @@ export class PainelCovidComponent implements OnInit {
       responsive: {
         rules: [{
           condition: {
-            maxWidth: 800
+            maxWidth: 500
           },
           chartOptions: {
+            chart: {
+              type: 'bar'
+            },
             legend: {
               layout: 'horizontal',
               align: 'center',
