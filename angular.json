@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/scss-lib/dist/main.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -95,7 +97,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              ""
+            ]
           }
         },
         "lint": {
@@ -124,6 +128,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "covid"
 }

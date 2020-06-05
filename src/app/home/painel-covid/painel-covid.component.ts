@@ -20,6 +20,9 @@ export class PainelCovidComponent implements OnInit {
 
   covidData$: Observable<CovidData[]>
 
+  cases: any = 0
+  deaths: any = 0
+
   constructor(
     private store: Store<CovidState>
   ) { }
@@ -29,7 +32,31 @@ export class PainelCovidComponent implements OnInit {
     //this.covidData$ = this.store.select(getCovidState)
     console.log(this.covidData$)
     this.createChart();
+    this.store.select(getCovidState).subscribe((item) => {
+      item.forEach((item) => {
+        this.cases += item.qtd_confirmado;
+        this.deaths += item.qtd_obito;
+        console.log(this.cases)
+        console.log(this.deaths)
+      })
+
+    }).unsubscribe();
+    /*     this.getNumber(this.covidData$) */
   }
+
+  getNumber(data) {
+    data.forEach((item) => {
+      this.cases += item.qtd_confirmado;
+      this.deaths += item.qtd_obito;
+      console.log(this.cases)
+      console.log(this.deaths)
+    })
+
+
+  }
+
+
+
 
   createChart() {
     this.store.select(getCovidState)
@@ -53,7 +80,9 @@ export class PainelCovidComponent implements OnInit {
             const element = data[index];
             ArrayConvert.push(element)
             arrayStates.push(element.nome)
+            this.cases += element.qtd_confirmado
             cases.push(element.qtd_confirmado)
+            this.deaths += element.qtd_obito
             deaths.push(element.qtd_obito)
             lethality.push(parseInt(element.letalidade))
           }

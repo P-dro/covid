@@ -17,6 +17,8 @@ import { PainelCovidService } from './home/painel-covid.service';
 import { NewsletterComponent } from './home/newsletter/newsletter.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
