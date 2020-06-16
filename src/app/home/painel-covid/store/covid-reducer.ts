@@ -7,7 +7,7 @@ import { getCovid, getCovidSuccess } from './covid-action';
 const _covidReducer = createReducer(initialState,
     on(getCovid, (state): CovidState => Object.assign({}, state, { loading: true })),
     on(getCovidSuccess, (state, action): CovidState => Object.assign({}, state, {
-        data: action.results,
+        data: action,
         loading: false
     }))
 );

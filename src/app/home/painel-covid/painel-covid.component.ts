@@ -33,9 +33,10 @@ export class PainelCovidComponent implements OnInit {
     console.log(this.covidData$)
     this.createChart();
     this.store.select(getCovidState).subscribe((item) => {
+
       item.forEach((item) => {
-        this.cases += item.qtd_confirmado;
-        this.deaths += item.qtd_obito;
+        this.cases += item.casosAcumulado;
+        this.deaths += item.obitosAcumulado;
         console.log(this.cases)
         console.log(this.deaths)
       })
@@ -46,8 +47,8 @@ export class PainelCovidComponent implements OnInit {
 
   getNumber(data) {
     data.forEach((item) => {
-      this.cases += item.qtd_confirmado;
-      this.deaths += item.qtd_obito;
+      this.cases += item.casosAcumulado;
+      this.deaths += item.obitosAcumulado;
       console.log(this.cases)
       console.log(this.deaths)
     })
@@ -78,13 +79,13 @@ export class PainelCovidComponent implements OnInit {
           console.log(data)
           for (let index = 0; index < 27; index++) {
             const element = data[index];
-            ArrayConvert.push(element)
-            arrayStates.push(element.nome)
-            this.cases += element.qtd_confirmado
-            cases.push(element.qtd_confirmado)
-            this.deaths += element.qtd_obito
-            deaths.push(element.qtd_obito)
-            lethality.push(parseInt(element.letalidade))
+            ArrayConvert.push(element);
+            arrayStates.push(element.nome);
+            this.cases += element.casosAcumulado;
+            cases.push(element.casosAcumulado);
+            this.deaths += element.obitosAcumulado;
+            deaths.push(element.obitosAcumulado);
+            lethality.push(Math.trunc(parseInt(element.casosAcumulado) / parseInt(element.obitosAcumulado)));
           }
           objectHighcharts.stateNome = arrayStates;
           objectHighcharts.cases = cases;

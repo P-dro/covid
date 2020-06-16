@@ -18,7 +18,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const dupReq = req.clone({
-            headers: req.headers.set('x-parse-application-id', this.uuidService.uuidv4()),
+            // headers: req.headers.set('x-parse-application-id', this.uuidService.uuidv4()),
         });
         return next.handle(dupReq);
     }
